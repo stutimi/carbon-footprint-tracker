@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import QuickTracker from "@/components/QuickTracker";
 import FeatureShowcase from "@/components/FeatureShowcase";
+import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -10,6 +11,7 @@ const Index = () => {
       <HeroSection />
       <QuickTracker />
       <FeatureShowcase />
+      <Footer />
     </div>
   );
 };

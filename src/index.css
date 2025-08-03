@@ -46,11 +46,16 @@ All colors MUST be HSL.
     --gradient-primary: linear-gradient(135deg, hsl(150 60% 20%), hsl(165 70% 35%));
     --gradient-success: linear-gradient(135deg, hsl(120 60% 45%), hsl(150 60% 40%));
     --gradient-earth: linear-gradient(135deg, hsl(150 60% 20%), hsl(200 60% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(150 60% 20%) 0%, hsl(165 70% 35%) 50%, hsl(120 60% 45%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(150 30% 95%) 0%, hsl(150 20% 98%) 100%);
+    --gradient-glow: linear-gradient(45deg, hsl(150 60% 20% / 0.1), hsl(165 70% 35% / 0.1), hsl(120 60% 45% / 0.1));
     
     /* Shadows with green tint */
     --shadow-soft: 0 4px 20px hsl(150 30% 20% / 0.1);
     --shadow-medium: 0 8px 30px hsl(150 30% 20% / 0.15);
     --shadow-strong: 0 12px 40px hsl(150 30% 20% / 0.2);
+    --shadow-glow: 0 0 40px hsl(150 60% 20% / 0.3);
+    --shadow-colored: 0 10px 30px hsl(165 70% 35% / 0.2);
 
     --radius: 0.5rem;
 
@@ -126,14 +131,151 @@ All colors MUST be HSL.
   }
   
   .hover-scale {
-    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg transform-gpu;
   }
   
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+    @apply transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl transform-gpu;
   }
   
   .glow-border {
     @apply relative overflow-hidden before:absolute before:inset-0 before:rounded-lg before:padding-[1px] before:bg-gradient-to-r before:from-primary before:to-accent before:content-[''] before:-z-10;
+  }
+  
+  .magical-glow {
+    @apply relative;
+  }
+  
+  .magical-glow::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, 
+      hsl(var(--primary)), 
+      hsl(var(--accent)), 
+      hsl(var(--success)), 
+      hsl(var(--accent)), 
+      hsl(var(--primary)));
+    background-size: 300% 300%;
+    border-radius: inherit;
+    z-index: -1;
+    filter: blur(6px);
+    animation: rainbow-glow 3s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .magical-glow:hover::before {
+    opacity: 0.7;
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  .floating-elements {
+    animation: float-gentle 6s ease-in-out infinite;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-success bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease-in-out infinite;
+  }
+  
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+  
+  .morphing-border {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  
+  .morphing-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: conic-gradient(from 0deg, hsl(var(--primary)), hsl(var(--accent)), hsl(var(--success)), hsl(var(--primary)));
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: rotate-border 4s linear infinite;
+  }
+}
+
+@keyframes rainbow-glow {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.6), 0 0 60px hsl(var(--accent) / 0.4);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-2deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes rotate-border {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

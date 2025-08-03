@@ -42,17 +42,17 @@ const QuickTracker = () => {
       
       <div className="text-center mb-12 animate-fade-in">
         <div className="flex items-center justify-center gap-2 mb-4">
-          <Calculator className="h-8 w-8 text-primary animate-glow" />
-          <TrendingUp className="h-6 w-6 text-accent" />
+          <Calculator className="h-8 w-8 text-primary pulse-glow floating-elements" />
+          <TrendingUp className="h-6 w-6 text-accent floating-elements" style={{animationDelay: '0.5s'}} />
         </div>
-        <h2 className="text-3xl font-bold text-foreground mb-4">Quick Carbon Calculator</h2>
+        <h2 className="text-3xl font-bold text-foreground mb-4 gradient-text">Quick Carbon Calculator</h2>
         <p className="text-lg text-muted-foreground">Enter your monthly habits to get started</p>
       </div>
 
-      <Card className="max-w-4xl mx-auto hover-lift animate-scale-in glow-border">
+      <Card className="max-w-4xl mx-auto hover-lift animate-scale-in morphing-border magical-glow">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Calculator className="h-6 w-6 text-primary animate-float" />
+            <Calculator className="h-6 w-6 text-primary floating-elements" />
             Track Your Monthly Impact
           </CardTitle>
           <CardDescription>
@@ -78,7 +78,7 @@ const QuickTracker = () => {
 
             <TabsContent value="transport" className="space-y-4 mt-6 animate-fade-in">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="space-y-2 hover-lift">
+                <div className="space-y-2 hover-lift group">
                   <Label htmlFor="car">Car (km/month)</Label>
                   <Input
                     id="car"
@@ -86,10 +86,10 @@ const QuickTracker = () => {
                     placeholder="1000"
                     value={transport.car}
                     onChange={(e) => setTransport({...transport, car: e.target.value})}
-                    className="transition-all focus:scale-105"
+                    className="transition-all focus:scale-105 shimmer group-hover:shadow-lg"
                   />
                 </div>
-                <div className="space-y-2 hover-lift">
+                <div className="space-y-2 hover-lift group">
                   <Label htmlFor="bus">Public Transport (km/month)</Label>
                   <Input
                     id="bus"
@@ -97,10 +97,10 @@ const QuickTracker = () => {
                     placeholder="200"
                     value={transport.bus}
                     onChange={(e) => setTransport({...transport, bus: e.target.value})}
-                    className="transition-all focus:scale-105"
+                    className="transition-all focus:scale-105 shimmer group-hover:shadow-lg"
                   />
                 </div>
-                <div className="space-y-2 hover-lift">
+                <div className="space-y-2 hover-lift group">
                   <Label htmlFor="bike">Bike/Walk (km/month)</Label>
                   <Input
                     id="bike"
@@ -108,7 +108,7 @@ const QuickTracker = () => {
                     placeholder="50"
                     value={transport.bike}
                     onChange={(e) => setTransport({...transport, bike: e.target.value})}
-                    className="transition-all focus:scale-105"
+                    className="transition-all focus:scale-105 shimmer group-hover:shadow-lg"
                   />
                 </div>
               </div>
@@ -173,9 +173,9 @@ const QuickTracker = () => {
             <Button 
               onClick={calculateFootprint} 
               size="lg"
-              className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 hover-lift group animate-glow"
+              className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 hover-lift group magical-glow shimmer pulse-glow"
             >
-              <Calculator className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" />
+              <Calculator className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform floating-elements" />
               Calculate My Footprint
             </Button>
           </div>
