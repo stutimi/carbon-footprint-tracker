@@ -2,8 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/31314c64-4ce1-491a-ac0d-39f57cf61312
-
+**URL**:  https://carbon-game-star-82.vercel.app/
 ## How can I edit this code?
 
 There are several ways of editing your application.
